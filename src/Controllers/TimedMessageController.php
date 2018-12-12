@@ -176,7 +176,7 @@ class TimedMessageController extends BaseController
 
         $form->hasMany('rules', 'Правила', function (Form\NestedForm $nestedForm) {
             $nestedForm->select('column', 'Поле')
-                ->options(TimedMessageRule::COLUMNS)
+                ->options(config('timed_messages.rules.columns'))
                 ->allowClear(false);
 
             $nestedForm->select('operator', 'Оператор')

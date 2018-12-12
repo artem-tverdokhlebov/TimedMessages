@@ -73,8 +73,7 @@ class TimedMessageItem extends Model
                         'parse_mode' => 'HTML',
                         'reply_markup' => $keyboard
                     ]);
-                } catch (\Exception $exception) {
-                }
+                } catch (\Exception $exception) { }
 
                 if (!empty($this->buttons)) {
                     $keyboard = Telegram::replyKeyboardMarkup([
@@ -109,9 +108,7 @@ class TimedMessageItem extends Model
                         $this->audio_id = $audio->getFileId();
                         $this->save();
                     }
-                } catch (\Exception $exception) {
-                    dd($exception);
-                }
+                } catch (\Exception $exception) { }
 
                 usleep(150 * 1000);
             } else if (!is_null($this->audio_id)) {
@@ -121,8 +118,7 @@ class TimedMessageItem extends Model
                         'audio' => $this->audio_id,
                         'reply_markup' => $keyboard
                     ]);
-                } catch (\Exception $exception) {
-                }
+                } catch (\Exception $exception) { }
 
                 if (!empty($this->buttons)) {
                     $keyboard = Telegram::replyKeyboardMarkup([
@@ -161,8 +157,7 @@ class TimedMessageItem extends Model
 
                         $this->save();
                     }
-                } catch (\Exception $exception) {
-                }
+                } catch (\Exception $exception) { }
 
                 usleep(150 * 1000);
             } else if (!is_null($this->photo_id)) {
@@ -172,8 +167,7 @@ class TimedMessageItem extends Model
                         'photo' => $this->photo_id,
                         'reply_markup' => $keyboard
                     ]);
-                } catch (\Exception $exception) {
-                }
+                } catch (\Exception $exception) { }
 
                 if (!empty($this->buttons)) {
                     $keyboard = Telegram::replyKeyboardMarkup([
@@ -210,8 +204,7 @@ class TimedMessageItem extends Model
 
                         $this->save();
                     }
-                } catch (\Exception $exception) {
-                }
+                } catch (\Exception $exception) { }
 
                 usleep(150 * 1000);
             } else if (!is_null($this->document_id)) {
@@ -221,8 +214,7 @@ class TimedMessageItem extends Model
                         'document' => $this->document_id,
                         'reply_markup' => $keyboard
                     ]);
-                } catch (\Exception $exception) {
-                }
+                } catch (\Exception $exception) { }
 
                 if (!empty($this->buttons)) {
                     $keyboard = Telegram::replyKeyboardMarkup([
@@ -240,7 +232,7 @@ class TimedMessageItem extends Model
             if (isset($userInfoData['email'])) {
                 try {
                     Mail::send([], [], function ($message) use ($timedMessage, $userInfoData, $user) {
-                        $message->from(env('APP_EMAIL'), env('APP_EMAIL_USER'));
+                        $message->from(config('timed_messages.email.email'), config('timed_messages.email.email_user'));
 
                         $message->to($userInfoData['email'], $user->name)
                             ->subject($timedMessage->name)
