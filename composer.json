@@ -8,11 +8,32 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=7.0.0",
+        "laravel/framework": "~5.5",
+        "behat/transliterator": "~1.2.0",
+        "encore/laravel-admin": "dev-artem-dev",
+        "irazasyed/telegram-bot-sdk": "dev-artem-dev"
     },
     "autoload": {
         "psr-0": {
-            "TimedMessages": "src/"
+            "Ridex//TimedMessages": "src/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/artem-tverdokhlebov/laravel-admin"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/artem-tverdokhlebov/telegram-bot-sdk"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ridex\\TimedMessages\\TimedMessagesServiceProvider"
+            ]
         }
     }
 }
